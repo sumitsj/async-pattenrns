@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/sumitsj/channel-synchronizer/async"
-	"github.com/sumitsj/channel-synchronizer/printer"
+	"github.com/sumitsj/async-pattenrns/async"
+	"github.com/sumitsj/async-pattenrns/printer"
 )
 
 func main() {
