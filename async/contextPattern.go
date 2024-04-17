@@ -1,15 +1,16 @@
-package terminator
+package async
 
 import (
+	"context"
 	"fmt"
 	"time"
 )
 
-func infiniteLoop(quit *chan bool) {
+func infiniteLoop2(ctx context.Context) {
 	for {
 		select {
-		case <-*quit:
-			fmt.Println("Channel closed...")
+		case <-ctx.Done():
+			fmt.Println("Context cancelled")
 			return
 		default:
 			fmt.Println("Running...")
@@ -18,11 +19,11 @@ func infiniteLoop(quit *chan bool) {
 	}
 }
 
-func Run() {
-	quit := make(chan bool)
-	go infiniteLoop(&quit)
+func RunWithContext() {
+	ctx, cancel := context.WithCancel(context.Background())
+	go infiniteLoop2(ctx)
 	fmt.Println("Go Routine started")
 	time.Sleep(5 * time.Second)
-	quit <- true
+	cancel()
 	time.Sleep(1 * time.Second)
 }
