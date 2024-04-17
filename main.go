@@ -13,4 +13,5 @@ func main() {
 	printer.Run()
 	terminator.Run()
 	terminator.RunWithContext()
+	terminator.RunWithTomb()
 }
